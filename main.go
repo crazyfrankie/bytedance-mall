@@ -1,20 +1,67 @@
 package main
 
 import (
-	"context"
-	"net/http"
+	"log"
+	"net"
+	"time"
 
-	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/cloudwego/hertz/pkg/app/server"
-	"github.com/cloudwego/hertz/pkg/common/utils"
+	"bytedance-mall/conf"
+	"bytedance-mall/kitex_gen/pbapi/echoservice"
+	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/cloudwego/kitex/pkg/rpcinfo"
+	"github.com/cloudwego/kitex/server"
+	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
+	etcd "github.com/kitex-contrib/registry-etcd"
+	"go.uber.org/zap/zapcore"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func main() {
-	h := server.Default()
+	opts := kitexInit()
 
-	h.GET("/ping", func(ctx context.Context, c *app.RequestContext) {
-		c.JSON(http.StatusOK, utils.H{"message": "pong"})
+	svr := echoservice.NewServer(new(EchoServiceImpl), opts...)
+
+	err := svr.Run()
+	if err != nil {
+		klog.Error(err.Error())
+	}
+}
+
+func kitexInit() (opts []server.Option) {
+	// address
+	addr, err := net.ResolveTCPAddr("tcp", conf.GetConf().Kitex.Address)
+	if err != nil {
+		panic(err)
+	}
+	opts = append(opts, server.WithServiceAddr(addr))
+
+	// service info
+	opts = append(opts, server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{
+		ServiceName: conf.GetConf().Kitex.Service,
+	}))
+
+	r, err := etcd.NewEtcdRegistry(conf.GetConf().Registry.RegistryAddress) // r should not be reused.
+	if err != nil {
+		log.Fatal(err)
+	}
+	opts = append(opts, server.WithRegistry(r))
+
+	// klog
+	logger := kitexlogrus.NewLogger()
+	klog.SetLogger(logger)
+	klog.SetLevel(conf.LogLevel())
+	asyncWriter := &zapcore.BufferedWriteSyncer{
+		WS: zapcore.AddSync(&lumberjack.Logger{
+			Filename:   conf.GetConf().Kitex.LogFileName,
+			MaxSize:    conf.GetConf().Kitex.LogMaxSize,
+			MaxBackups: conf.GetConf().Kitex.LogMaxBackups,
+			MaxAge:     conf.GetConf().Kitex.LogMaxAge,
+		}),
+		FlushInterval: time.Minute,
+	}
+	klog.SetOutput(asyncWriter)
+	server.RegisterShutdownHook(func() {
+		asyncWriter.Sync()
 	})
-	
-	h.Spin()
+	return
 }
