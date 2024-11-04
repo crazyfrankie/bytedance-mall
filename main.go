@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytedance-mall/biz/dal"
 	"log"
 	"net"
 	"time"
@@ -10,6 +11,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
+	"github.com/joho/godotenv"
 	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
 	etcd "github.com/kitex-contrib/registry-etcd"
 	"go.uber.org/zap/zapcore"
@@ -17,11 +19,16 @@ import (
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
+	dal.Init()
 	opts := kitexInit()
 
 	svr := echoservice.NewServer(new(EchoServiceImpl), opts...)
 
-	err := svr.Run()
+	err = svr.Run()
 	if err != nil {
 		klog.Error(err.Error())
 	}
