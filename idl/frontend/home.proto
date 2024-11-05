@@ -1,22 +1,16 @@
 // idl/hello/hello.proto
 syntax = "proto3";
 
-package hello;
+package frontend.home;
 
-option go_package = "hertz/hello";
+option go_package = "frontend/home";
 
 import "api.proto";
 
-message HelloReq {
-   string Name = 1[(api.query)="name"];
-}
+message Empty {}
 
-message HelloResp {
-   string RespBody = 1;
-}
-
-service HelloService {
-   rpc Method1(HelloReq) returns(HelloResp) {
-      option (api.get) = "/hello";
+service HomeService {
+   rpc Home(Empty) returns(Empty) {
+      option (api.get) = "/";
    }
 }
