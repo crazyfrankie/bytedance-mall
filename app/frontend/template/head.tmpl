@@ -10,11 +10,10 @@
               integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" 
               crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
-  <body>
-
+  <body class="min-vh-100">
   <head>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
+      <div class="container">
         <image class="navbar-brand" href="#" src="/static/image/logo.png" alt="GoShop" style="height: 3em"/>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,25 +43,38 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+          
 
           <div class="ms-3">
-            <i class="fa-solid fa-cart-shopping fa-2xl"></i>
+            <a href="/cart" class="btn btn-link p-0" style="cursor: pointer;">
+              <i class="fa-solid fa-cart-shopping fa-2xl"></i>
+            </a>
+          </div>
+          
+          {{if .user_id}}
+          <div class="dropdown">
+            <div class="ms-3 dropdown-toggle" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-user fa-2xl"></i>
+              <span>
+                Name
+              </span>
+            </div>
+            <ul class="dropdown-menu mt-2" style="min-width: auto;">
+              <li><a class="dropdown-item" href="#">Order Center</a></li>
+              <li><a class="dropdown-item" href="#">Infomations</a></li>
+              <li><a class="dropdown-item" href="#">Logout</a></li>
+            </ul>
           </div>
 
+          {{else}}
           <div class="ms-3">
-            <i class="fa-solid fa-user fa-2xl"></i>
+            <a type="button" class="btn btn-primary" href="/log-in"> In</a>
           </div>
-
-          <div class="ms-3">
-            <button type="button" class="btn btn-primary">Sign In</button>
-          </div>
-
+          {{end}}
         </div>
       </div>
     </nav>
   </head>
-
-
-  <main>
-    <div class="container-fluid">
+<main style="min-height: calc(80vh);">
+<div class="container-fluid py-3">
 {{end}}
