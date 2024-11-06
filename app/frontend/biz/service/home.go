@@ -4,6 +4,7 @@ import (
 	"context"
 
 	home "frontend/hertz_gen/home"
+
 	"github.com/cloudwego/hertz/pkg/app"
 )
 

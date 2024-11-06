@@ -8,6 +8,7 @@ import (
 
 	"frontend/biz/router"
 	"frontend/conf"
+
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/middlewares/server/recovery"
 	"github.com/cloudwego/hertz/pkg/app/server"
@@ -37,7 +38,8 @@ func main() {
 	})
 
 	router.GeneratedRegister(h)
-
+	h.LoadHTMLGlob("template/*")
+	h.Static("/static", "./")
 	h.Spin()
 }
 
