@@ -30,3 +30,24 @@ func Home(ctx context.Context, c *app.RequestContext) {
 
 	c.HTML(consts.StatusOK, "home", utils.WrapResponse(ctx, c, resp))
 }
+
+// About .
+// @router /about [GET]
+func About(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req home.Empty
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
+		return
+	}
+
+	resp, err := service.NewAboutService(ctx, c).Run(&req)
+
+	if err != nil {
+		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
+		return
+	}
+
+	c.HTML(consts.StatusOK, "about", utils.WrapResponse(ctx, c, resp))
+}

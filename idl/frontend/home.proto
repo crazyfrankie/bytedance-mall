@@ -13,4 +13,7 @@ service HomeService {
    rpc Home(Empty) returns(Empty) {
       option (api.get) = "/";
    }
+   rpc About(Empty) returns(Empty) {
+      option (api.get) = "/about";
+   }
 }
