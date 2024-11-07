@@ -2,9 +2,9 @@ package mysql
 
 import (
 	"fmt"
-	"frontend/conf"
 	"os"
 
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/conf"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

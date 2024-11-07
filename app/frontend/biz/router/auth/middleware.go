@@ -21,6 +21,11 @@ func _loginMw() []app.HandlerFunc {
 	return nil
 }
 
+func _logoutMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
 func _signupMw() []app.HandlerFunc {
 	// your code...
 	return nil

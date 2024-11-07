@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/hertz-contrib/sessions"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/middleware"
 )
 
 // SendErrResponse  pack error response
@@ -20,8 +20,6 @@ func SendSuccessResponse(ctx context.Context, c *app.RequestContext, code int, d
 }
 
 func WrapResponse(ctx context.Context, c *app.RequestContext, content map[string]any) map[string]any {
-	session := sessions.Default(c)
-	val := session.Get("user_id")
-	content["user_id"] = val
+	content["user_id"] = ctx.Value(middleware.SessionUserId)
 	return content
 }

@@ -1,4 +1,4 @@
-module frontend
+module github.com/crazyfrankie/bytedance-mall/app/frontend
 
 go 1.23.2
 
@@ -8,7 +8,7 @@ require (
 	github.com/cloudwego/hertz v0.9.3
 	github.com/hertz-contrib/cors v0.1.0
 	github.com/hertz-contrib/gzip v0.0.3
-	github.com/hertz-contrib/logger/accesslog v0.0.0-20240623133421-6fb592ed8d10
+	github.com/hertz-contrib/logger/accesslog v0.0.0-20241107070745-e4ce8c54dd97
 	github.com/hertz-contrib/logger/logrus v1.0.1
 	github.com/hertz-contrib/pprof v0.1.2
 	github.com/hertz-contrib/sessions v1.0.3

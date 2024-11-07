@@ -13,6 +13,10 @@ import (
 	"github.com/cloudwego/hertz/pkg/common/hlog"
 	"github.com/cloudwego/hertz/pkg/common/utils"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/dal"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/router"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/conf"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/middleware"
 	"github.com/hertz-contrib/cors"
 	"github.com/hertz-contrib/gzip"
 	"github.com/hertz-contrib/logger/accesslog"
@@ -23,10 +27,6 @@ import (
 	"github.com/subosito/gotenv"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
-
-	"frontend/biz/dal"
-	"frontend/biz/router"
-	"frontend/conf"
 )
 
 func main() {
@@ -56,7 +56,15 @@ func main() {
 	})
 
 	h.GET("/log-in", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(consts.StatusOK, "login", utils.H{"Title": "Log in"})
+		data := utils.H{
+			"Title": "Log in",
+			"Next":  ctx.Query("next"),
+		}
+		ctx.HTML(consts.StatusOK, "login", data)
+	})
+
+	h.GET("/about", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(consts.StatusOK, "about", utils.H{"Title": "About"})
 	})
 
 	h.Spin()
@@ -105,4 +113,6 @@ func registerMiddleware(h *server.Hertz) {
 
 	// cores
 	h.Use(cors.Default())
+
+	middleware.Register(h)
 }

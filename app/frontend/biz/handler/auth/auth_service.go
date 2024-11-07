@@ -3,12 +3,13 @@ package auth
 import (
 	"context"
 
-	"frontend/biz/service"
-	"frontend/biz/utils"
-	auth "frontend/hertz_gen/auth"
-
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/service"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/utils"
+
+	auth "github.com/crazyfrankie/bytedance-mall/app/frontend/hertz_gen/frontend/auth"
 )
 
 // Login .
@@ -22,13 +23,13 @@ func Login(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	_, err = service.NewLoginService(ctx, c).Run(&req)
+	redirect, err := service.NewLoginService(ctx, c).Run(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
 		return
 	}
 
-	c.Redirect(consts.StatusOK, []byte("/"))
+	c.Redirect(consts.StatusOK, []byte(redirect))
 }
 
 // Signup .
@@ -43,6 +44,26 @@ func Signup(ctx context.Context, c *app.RequestContext) {
 	}
 
 	_, err = service.NewSignupService(ctx, c).Run(&req)
+
+	if err != nil {
+		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
+		return
+	}
+	c.Redirect(consts.StatusOK, []byte("/"))
+}
+
+// Logout .
+// @router /auth/logout [POST]
+func Logout(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req auth.Empty
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
+		return
+	}
+
+	_, err = service.NewLogoutService(ctx, c).Run(&req)
 
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)

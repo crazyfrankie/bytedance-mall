@@ -4,9 +4,8 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz/pkg/app"
+	auth "github.com/crazyfrankie/bytedance-mall/app/frontend/hertz_gen/frontend/auth"
 	"github.com/hertz-contrib/sessions"
-
-	auth "frontend/hertz_gen/auth"
 )
 
 type SignupService struct {
@@ -23,9 +22,13 @@ func (h *SignupService) Run(req *auth.SignupReq) (resp *auth.Empty, err error) {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
-	// TODO user svc api
+	// todo edit your code
 	session := sessions.Default(h.RequestContext)
 	session.Set("user_id", 1)
-	session.Save()
+	err = session.Save()
+	if err != nil {
+		return nil, err
+	}
+
 	return
 }

@@ -1,8 +1,8 @@
 package dal
 
 import (
-	"frontend/biz/dal/mysql"
-	"frontend/biz/dal/redis"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/dal/mysql"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/dal/redis"
 )
 
 func Init() {

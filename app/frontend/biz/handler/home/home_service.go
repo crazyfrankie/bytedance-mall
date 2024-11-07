@@ -3,12 +3,12 @@ package home
 import (
 	"context"
 
-	"frontend/biz/service"
-	"frontend/biz/utils"
-	home "frontend/hertz_gen/home"
-
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/service"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/utils"
+	home "github.com/crazyfrankie/bytedance-mall/app/frontend/hertz_gen/frontend/home"
 )
 
 // Home .
@@ -29,5 +29,4 @@ func Home(ctx context.Context, c *app.RequestContext) {
 	}
 
 	c.HTML(consts.StatusOK, "home", utils.WrapResponse(ctx, c, resp))
-	// utils.SendSuccessResponse(ctx, c, consts.StatusOK, resp)
 }

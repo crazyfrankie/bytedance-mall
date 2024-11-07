@@ -3,7 +3,7 @@ package redis
 import (
 	"context"
 
-	"frontend/conf"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/conf"
 	"github.com/redis/go-redis/v9"
 )
 

@@ -3,8 +3,8 @@
 package home
 
 import (
-	home "frontend/biz/handler/home"
 	"github.com/cloudwego/hertz/pkg/app/server"
+	home "github.com/crazyfrankie/bytedance-mall/app/frontend/biz/handler/home"
 )
 
 /*

@@ -3,8 +3,8 @@
 package auth
 
 import (
-	auth "frontend/biz/handler/auth"
 	"github.com/cloudwego/hertz/pkg/app/server"
+	auth "github.com/crazyfrankie/bytedance-mall/app/frontend/biz/handler/auth"
 )
 
 /*
@@ -20,6 +20,7 @@ func Register(r *server.Hertz) {
 	{
 		_auth := root.Group("/auth", _authMw()...)
 		_auth.POST("/login", append(_loginMw(), auth.Login)...)
+		_auth.POST("/logout", append(_logoutMw(), auth.Logout)...)
 		_auth.POST("/register", append(_signupMw(), auth.Signup)...)
 	}
 }
