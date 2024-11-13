@@ -7,22 +7,31 @@ import (
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
+	"github.com/joho/godotenv"
 
+	"github.com/crazyfrankie/bytedance-mall/app/user/biz/dal"
 	"github.com/crazyfrankie/bytedance-mall/app/user/conf"
 	"github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/user/userservice"
 
 	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
-	etcd "github.com/kitex-contrib/registry-etcd"
+	consul "github.com/kitex-contrib/registry-consul"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		panic(err)
+	}
+
+	dal.Init()
+
 	opts := kitexInit()
 
 	svr := userservice.NewServer(new(UserServiceImpl), opts...)
 
-	err := svr.Run()
+	err = svr.Run()
 	if err != nil {
 		klog.Error(err.Error())
 	}
@@ -41,7 +50,7 @@ func kitexInit() (opts []server.Option) {
 		ServiceName: conf.GetConf().Kitex.Service,
 	}))
 
-	r, err := etcd.NewEtcdRegistry([]string{"127.0.0.1:2379"})
+	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0])
 	if err != nil {
 		panic(err)
 	}

@@ -16,6 +16,7 @@ import (
 	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/dal"
 	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/router"
 	"github.com/crazyfrankie/bytedance-mall/app/frontend/conf"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/infra/rpc"
 	"github.com/crazyfrankie/bytedance-mall/app/frontend/middleware"
 	"github.com/hertz-contrib/cors"
 	"github.com/hertz-contrib/gzip"
@@ -24,19 +25,20 @@ import (
 	"github.com/hertz-contrib/pprof"
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
-	"github.com/subosito/gotenv"
+	"github.com/joho/godotenv"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
 func main() {
-	err := gotenv.Load()
+	err := godotenv.Load()
 	if err != nil {
 		panic(err)
 	}
 
 	// init dal
 	dal.Init()
+	rpc.Init()
 	address := conf.GetConf().Hertz.Address
 	h := server.New(server.WithHostPorts(address))
 

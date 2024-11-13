@@ -11,7 +11,7 @@ message RegisterReq {
 }
 
 message RegisterResp{
-    string user_id = 1;
+    int32 user_id = 1;
 }
 
 message LoginReq {
@@ -20,7 +20,7 @@ message LoginReq {
 }
 
 message LoginResp {
-    string user_id = 1;
+    int32 user_id = 1;
 }
 
 service UserService {

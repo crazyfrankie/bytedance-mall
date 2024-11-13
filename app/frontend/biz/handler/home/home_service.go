@@ -5,7 +5,6 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
-
 	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/service"
 	"github.com/crazyfrankie/bytedance-mall/app/frontend/biz/utils"
 	home "github.com/crazyfrankie/bytedance-mall/app/frontend/hertz_gen/frontend/home"

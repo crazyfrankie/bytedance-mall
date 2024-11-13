@@ -4,7 +4,8 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/crazyfrankie/bytedance-mall/app/frontend/middleware"
+
+	frontendUtils "github.com/crazyfrankie/bytedance-mall/app/frontend/util"
 )
 
 // SendErrResponse  pack error response
@@ -20,6 +21,6 @@ func SendSuccessResponse(ctx context.Context, c *app.RequestContext, code int, d
 }
 
 func WrapResponse(ctx context.Context, c *app.RequestContext, content map[string]any) map[string]any {
-	content["user_id"] = ctx.Value(middleware.SessionUserId)
+	content["user_id"] = frontendUtils.GetUserID(ctx)
 	return content
 }

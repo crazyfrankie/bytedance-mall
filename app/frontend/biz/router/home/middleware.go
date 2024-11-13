@@ -4,7 +4,6 @@ package home
 
 import (
 	"github.com/cloudwego/hertz/pkg/app"
-	"github.com/crazyfrankie/bytedance-mall/app/frontend/middleware"
 )
 
 func rootMw() []app.HandlerFunc {
@@ -18,7 +17,6 @@ func _homeMw() []app.HandlerFunc {
 }
 
 func _aboutMw() []app.HandlerFunc {
-	return []app.HandlerFunc{
-		middleware.Auth(),
-	}
+	// your code...
+	return nil
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4a843954-32f7-475b-b2b7-6676713ac7e6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/frontend/tmp/main" beforeDir="false" afterPath="$PROJECT_DIR$/app/frontend/tmp/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/biz/dal/mysql/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/biz/dal/mysql/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/biz/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/biz/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/biz/service/login.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/biz/service/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/biz/service/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/biz/service/register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/conf/conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/conf/conf.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/conf/test/conf.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/conf/test/conf.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/user/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/user/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idl/user.proto" beforeDir="false" afterPath="$PROJECT_DIR$/idl/user.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc_gen/kitex_gen/user/user.pb.fast.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc_gen/kitex_gen/user/user.pb.fast.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rpc_gen/kitex_gen/user/user.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/rpc_gen/kitex_gen/user/user.pb.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2oZRJMnB5XSCvmJH86mrKr4LG9b" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/frank&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-2946fb9b3188-155fe4b6e3a0-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.15619.13" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz/pkg/app"
-	auth "github.com/crazyfrankie/bytedance-mall/app/frontend/hertz_gen/frontend/auth"
+	user "github.com/crazyfrankie/bytedance-mall/app/frontend/hertz_gen/frontend/user"
 	"github.com/hertz-contrib/sessions"
 )
 
@@ -17,7 +17,7 @@ func NewLogoutService(Context context.Context, RequestContext *app.RequestContex
 	return &LogoutService{RequestContext: RequestContext, Context: Context}
 }
 
-func (h *LogoutService) Run(req *auth.Empty) (resp *auth.Empty, err error) {
+func (h *LogoutService) Run(req *user.Empty) (resp *user.Empty, err error) {
 	//defer func() {
 	// hlog.CtxInfof(h.Context, "req = %+v", req)
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
