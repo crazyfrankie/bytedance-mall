@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/crazyfrankie/bytedance-mall/app/product/biz/model"
 	"github.com/crazyfrankie/bytedance-mall/app/product/conf"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -25,6 +26,7 @@ func Init() {
 			SkipDefaultTransaction: true,
 		},
 	)
+	DB.AutoMigrate(&model.Category{}, &model.Product{})
 	if err != nil {
 		panic(err)
 	}

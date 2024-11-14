@@ -28,22 +28,22 @@
                 Categories
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">T-shirt</a></li>
-                <li><a class="dropdown-item" href="#">coat</a></li>
-                <li><a class="dropdown-item" href="#">Sticker</a></li>
-                <li><a class="dropdown-item" href="#">Shoes</a></li>
-                <li><a class="dropdown-item" href="#">Books</a></li>
+                <li><a class="dropdown-item" href="/category/T-shirt">T-shirt</a></li>
+                <li><a class="dropdown-item" href="/category/coat">coat</a></li>
+                <li><a class="dropdown-item" href="/category/Sticker">Sticker</a></li>
+                <li><a class="dropdown-item" href="/category/Shoes">Shoes</a></li>
+                <li><a class="dropdown-item" href="/category/books">Books</a></li>
               </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/about">About</a>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+          <form class="d-flex ms-auto" role="search" action="/search" method="get">
+              <input class="form-control me-2" type="search" name="q" placeholder="Search"
+                     aria-label="Search" value="{{ .q }}">
+              <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
-          
 
           <div class="ms-3">
             <a href="/cart" class="btn btn-link p-0" style="cursor: pointer;">

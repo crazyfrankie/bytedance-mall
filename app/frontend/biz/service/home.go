@@ -4,7 +4,10 @@ import (
 	"context"
 
 	"github.com/cloudwego/hertz/pkg/app"
+	"github.com/cloudwego/hertz/pkg/common/utils"
 	home "github.com/crazyfrankie/bytedance-mall/app/frontend/hertz_gen/frontend/home"
+	"github.com/crazyfrankie/bytedance-mall/app/frontend/infra/rpc"
+	"github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/product"
 )
 
 type HomeService struct {
@@ -17,25 +20,13 @@ func NewHomeService(Context context.Context, RequestContext *app.RequestContext)
 }
 
 func (h *HomeService) Run(req *home.Empty) (map[string]any, error) {
-	//defer func() {
-	// hlog.CtxInfof(h.Context, "req = %+v", req)
-	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
-	//}()
-	// todo edit your code
-	resp := make(map[string]any)
-	items := []map[string]any{
-		{"Name": "毛泽东选集", "Price": "100", "Picture": "/static/image/image.png"},
-		{"Name": "Go 语言高级编程", "Price": "25", "Picture": "/static/image/goadvance.png"},
-		{"Name": "Go 语言高级编程", "Price": "25", "Picture": "/static/image/goadvance.png"},
-		{"Name": "Go 语言高级编程", "Price": "25", "Picture": "/static/image/goadvance.png"},
-		{"Name": "Go 语言设计与实现", "Price": "25", "Picture": "/static/image/godesign.png"},
-		{"Name": "Go 语言设计与实现", "Price": "25", "Picture": "/static/image/godesign.png"},
-		{"Name": "Go 语言设计与实现", "Price": "25", "Picture": "/static/image/godesign.png"},
-		{"Name": "Go 语言设计与实现", "Price": "25", "Picture": "/static/image/godesign.png"},
+	products, err := rpc.ProductClient.ListProducts(h.Context, &product.ListProductsReq{CategoryName: "books"})
+	if err != nil {
+		return nil, err
 	}
 
-	resp["Title"] = "Hot sales"
-	resp["Items"] = items
-
-	return resp, nil
+	return utils.H{
+		"Title": "Hot Sale",
+		"Items": products.Products,
+	}, nil
 }
