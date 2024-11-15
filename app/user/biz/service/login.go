@@ -19,8 +19,9 @@ func NewLoginService(ctx context.Context) *LoginService {
 
 // Run create note info
 func (s *LoginService) Run(req *user.LoginReq) (resp *user.LoginResp, err error) {
-	// Finish your business logic.
-	u, err := model.FindByEmail(mysql.DB, req.Email)
+	userQuery := model.NewUserQuery(mysql.DB)
+
+	u, err := userQuery.FindByEmail(s.ctx, req.Email)
 	if err != nil {
 		return nil, err
 	}

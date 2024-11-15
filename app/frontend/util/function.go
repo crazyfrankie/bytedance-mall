@@ -1,12 +1,14 @@
 package util
 
-import "context"
+import (
+	"context"
+)
 
-func GetUserID(ctx context.Context) uint32 {
-	userId := ctx.Value("user_id")
+func GetUserIDFromCtx(ctx context.Context) int32 {
+	userId := ctx.Value(SessionUserId)
 	if userId == nil {
 		return 0
 	}
 
-	return userId.(uint32)
+	return userId.(int32)
 }

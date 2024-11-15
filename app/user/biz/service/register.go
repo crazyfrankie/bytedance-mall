@@ -38,7 +38,9 @@ func (s *RegisterService) Run(req *user.RegisterReq) (resp *user.RegisterResp, e
 		Password: string(passwordHashed),
 	}
 
-	err = model.Create(mysql.DB, newUser)
+	userQuery := model.NewUserQuery(mysql.DB)
+
+	err = userQuery.Create(s.ctx, newUser)
 	if err != nil {
 		return nil, err
 	}
