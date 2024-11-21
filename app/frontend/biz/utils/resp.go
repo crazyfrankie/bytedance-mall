@@ -2,7 +2,6 @@ package utils
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/cloudwego/hertz/pkg/app"
 
@@ -25,7 +24,6 @@ func SendSuccessResponse(ctx context.Context, c *app.RequestContext, code int, d
 
 func WrapResponse(ctx context.Context, c *app.RequestContext, content map[string]any) map[string]any {
 	userId := frontendUtils.GetUserIDFromCtx(ctx)
-	fmt.Println(userId)
 	content["user_id"] = ctx.Value(frontendUtils.SessionUserId)
 
 	if userId > 0 {
