@@ -6,12 +6,16 @@ import (
 
 	"github.com/cloudwego/kitex/pkg/kerrors"
 	"github.com/cloudwego/kitex/pkg/klog"
+	"github.com/crazyfrankie/bytedance-mall/app/checkout/infra/mq"
 	"github.com/crazyfrankie/bytedance-mall/app/checkout/infra/rpc"
 	"github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/cart"
 	checkout "github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/checkout"
+	"github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/email"
 	"github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/order"
 	"github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/payment"
 	"github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/product"
+	"github.com/nats-io/nats.go"
+	"google.golang.org/protobuf/proto"
 )
 
 type CheckoutService struct {
@@ -111,6 +115,19 @@ func (s *CheckoutService) Run(req *checkout.CheckoutReq) (resp *checkout.Checkou
 	if err != nil {
 		return nil, err
 	}
+
+	//6. 添加邮箱生产者
+	data, _ := proto.Marshal(&email.EmailReq{
+		From:        "123@qq.com",
+		To:          req.Email,
+		ContentType: "text/plain",
+		Subject:     "You have just created an order in GoShop",
+		Content:     "You have just created an order in GoShop",
+	})
+
+	msg := &nats.Msg{Subject: "email", Data: data}
+
+	_ = mq.Nc.PublishMsg(msg)
 
 	klog.Info(paymentResult)
 

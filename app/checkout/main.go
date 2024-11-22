@@ -8,6 +8,7 @@ import (
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
 	"github.com/crazyfrankie/bytedance-mall/app/checkout/conf"
+	"github.com/crazyfrankie/bytedance-mall/app/checkout/infra/mq"
 	"github.com/crazyfrankie/bytedance-mall/app/checkout/infra/rpc"
 	"github.com/crazyfrankie/bytedance-mall/rpc_gen/kitex_gen/checkout/checkoutservice"
 	kitexlogrus "github.com/kitex-contrib/obs-opentelemetry/logging/logrus"
@@ -17,6 +18,7 @@ import (
 )
 
 func main() {
+	mq.Init()
 
 	rpc.InitClient()
 
