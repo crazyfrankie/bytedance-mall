@@ -13,6 +13,6 @@ func (e *NoopEmail) Send(req *email.EmailReq) error {
 	return nil
 }
 
-func NewNoopEmail() NoopEmail {
-	return NoopEmail{}
+func NewNoopEmail() *NoopEmail {
+	return &NoopEmail{}
 }
